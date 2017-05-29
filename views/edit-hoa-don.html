@@ -1,0 +1,79 @@
+{% extends "index.html" %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <h1>
+            <!-- Dashboard-->
+            <small><!--Control panel--></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Chỉnh sửa hoá đơn</li>
+        </ol>
+    </section>
+
+    <section class="container" id="cart-page">
+        <div class="row mot-hang">
+            <a href="/them-san-pham" class="big-title">CHỈNH SỬA HOÁ ĐƠN</a>
+        </div>
+        </br>
+        <form action="/hoa-don/confirm" method="POST">
+            <table style="margin-top: 50px;">
+                <tr>
+                    <th>ID</th>
+                    <th>Khách Hàng</th>
+                    <th>Email</th>
+                    <th>Tổng tiền</th>
+                    <th>Thanh Toán</th>
+                    <th>Ngày Lập Hóa Đơn</th>
+                    <th>Người Lập Hóa Đơn</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                </tr>
+
+                <tr>
+                    <td><input type="text" class="form-control" name="orders_id" value="{{ bill.orders_id }}"></td>
+                    <td><input type="text" class="form-control" name="user_id" value="{{ bill.name}}"></td>
+                    <td><input type="text" class="form-control" name="email" value="{{ bill.email }}"></td>
+                    <td><input type="text" class="form-control" name="phone" value="{{ bill.total }}"></td>
+                    <td><input type="text" class="form-control" name="address" value="{{ bill.payment_id}}"></td>
+                    <td><input type="text" class="form-control" name="order_date" value="{{ bill.order_date }}"></td>
+                    <td><input type="text" class="form-control" name="method" value="admin"></td>
+                    <td><input type="text" class="form-control" name="status" value="{{ bill.status }}"></td>
+                </tr>
+            </table>
+            <div class="row">
+                <h3>Hoá đơn chi tiết</h3>
+                <hr>
+                <table>
+                    <tr>
+                        <th>Mã chi tiết</th>
+                        <th>Mã Hoá đơn</th>
+                        <th>Số lượng</th>
+                        <th>Giá gản phẩm</th>
+                    </tr>
+                    {% for product in detailed_orders %}
+                    <tr>
+                        <td>{{ product.detailed_bill_id }}</td>
+                        <td>{{ product.bill_id }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="modal-footer" style="margin-right: 50px;">
+                <!--<button type="button" class="btn btn-primary">Lưu</button> -->
+                <input type="submit" name="confirm" value="Xác nhận" class="btn btn-primary" >
+            </div>
+        </form>
+
+    </section>
+
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+{% endblock %}

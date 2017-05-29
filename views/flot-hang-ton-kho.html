@@ -1,0 +1,134 @@
+{% extends "index.html" %}
+
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Hàng Tồn Kho
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Thống Kê</a></li>
+      <li class="active"> Tồn Kho </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Bar chart -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <i class="fa fa-bar-chart-o"></i>
+
+            <h3 class="box-title">Bar Chart - 10 Sản Phẩm Có Số Lượng Trong Kho Cao Nhất</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+          <div class="box-body">
+            <div id="bar-chart" style="height: 300px;"></div>
+          </div>
+          <!-- /.box-body-->
+        </div>
+        <!-- /.box -->
+
+      </div>
+      <!-- /.col -->
+    </div>
+    <hr>
+    <h3>Danh Sách 10 Sản Phẩm Tồn Kho Với Ngày Nhập Cũ Nhất </h3>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Hình Ảnh</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Ngày Nhập</th>
+        <th>Đã Bán</th>
+        <th>Trong Kho</th>
+      </tr>
+
+      {% for product in products %}
+      <tr>
+        <td>{{ product.product_id }}</td>
+        {% if (product.product_type_id == 'ptdt')%}
+        <td class="img_cart"><img src="/images/products/{{ product.product_id }}_0.jpg"></td>
+        {% else %}
+        <td class="img_cart"><img src="/images/phukien/{{ product.product_id }}_0.jpg"></td>
+        {% endif %}
+        <td>{{ product.product_name }}</td>
+        <td>{{ product.store_day }}</td>
+        <td>{{ product.sales_volume }}</td>
+        <td>{{ product.quantity }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+{% endblock %} {% block script %}
+<!-- FLOT CHARTS -->
+<script src="/plugins/flot/jquery.flot.min.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="/plugins/flot/jquery.flot.resize.min.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="/plugins/flot/jquery.flot.pie.min.js"></script>
+<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+<script src="/plugins/flot/jquery.flot.categories.min.js"></script>
+<!-- Page script -->
+<script>
+  $(function () {
+
+    /*
+     * BAR CHART
+     * ---------
+     */
+    var barData = {{barData | dump }};
+
+    var bar_data = {
+    data: barData,
+    color: "#ff6347"
+    };
+  $.plot("#bar-chart", [bar_data], {
+    grid: {
+      borderWidth: 1,
+      borderColor: "#f3f3f3",
+      tickColor: "#f3f3f3"
+    },
+    series: {
+      bars: {
+        show: true,
+        barWidth: 0.3,
+        align: "center"
+      }
+    },
+    xaxis: {
+      mode: "categories",
+      tickLength: 0
+    }
+  });
+  /* END BAR CHART */
+
+    });
+
+  /*
+   * Custom Label formatter
+   * ----------------------
+   */
+  function labelFormatter(label, series) {
+    return '<div style="font-size:12px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
+      + label
+      + "<br>"
+      + Math.round(series.percent) + "%</div>";
+  }
+</script>
+{% endblock %}

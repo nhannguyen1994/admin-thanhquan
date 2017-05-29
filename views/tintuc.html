@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Tin Tức</li>
+      </ol>
+    </section>
+
+    <section class="container" id="cart-page">
+        <div class="row mot-hang">
+              <a href="" class="big-title">TIN TỨC</a>
+        </div></br></br>
+        
+      <a href="/them-tin-tuc" class="btn btn-primary btn-lg"  role="button" style="margin-left: 16px;">Thêm tin tức</a>
+      
+      </br>
+
+
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Tìm kiếm</button>
+        </form>
+       
+          <table>
+            <tr>
+               <th>ID</th>
+              <th>Người viết</th>
+              <th>Tiêu đề</th>
+              <th>ngày đăng</th>
+              <th>Nội dung</th>
+              <th></th>
+            </tr>
+            <tr>  
+              <td>1</td>
+              <td>Nguyễn Thị Nhan</td>
+              <td>Xperia XA1 có giá bán và chính thức lên kệ tại Thành Quân SmartPhone</td>
+              <td>29/03/2017</td>
+              <td>
+              <!--
+                  <p>Xperia XA đã rất thành công vì vậy mà nhiều người đang mong đợi phiên bản Xperia XA1 sẽ về Việt Nam. Tin vui là máy đã có giá bán chính thức và lên kệ tại Thế giới di động. </p>
+                  </br>
+                  <p>Theo đó, Xperia XA1 có giá bán chính thức là 6.49 triệu đồng tại nước ta, hiện sản phẩm chỉ được bán độc quyền tại hệ thống siêu thị TGDĐ. Các bạn có thể mua máy trong thời gian từ 28/3 - 30/4 sẽ nhận được khuyến mãi là trả góp 0% hoặc phiếu mua hàng trị giá 500 ngàn đồng.</p>
+                  </br>
+                  <p>Xperia XA1 vẫn có thiết kế đẹp mắt, trẻ trung với viền cạnh siêu mỏng và thừa hưởng ngôn ngữ thiết kế của Xperia XZs nên rất sang trọng.</p>
+                  </br>
+                  <p>XA1 sở hữu camera sau với thông số 23 MP tương tự trên Xperia Z5. Camera trước của thiết bị cũng được nâng lên 8 MP. Về cấu hình, thiết bị của Sony được trang bị khá tốt như màn hình 5 inch HD, chip Helio P20, RAM 3 GB, ROM 32 GB và viên pin 2.300 mAh.</p>
+                -->
+              </td>
+            
+              <td>
+                <a href="/edit-tin-tuc" class="btn btn-success btn-edit" role="button" >edit</a>
+               <!-- <button class="btn btn-success btn-edit">Edit</button> -->
+                <button class="btn btn-danger btn-delete">Delete</button>
+              </td>
+            </tr>
+          </table>
+
+    </section>
+</div>
+<!-- ./wrapper -->
+{% endblock %}

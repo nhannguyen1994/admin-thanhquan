@@ -1,0 +1,93 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+      <h1>
+       <!-- Dashboard-->
+        <small><!--Control panel--></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Đơn Hàng</li>
+      </ol>
+    </section>
+
+    <section class="container" id="cart-page">
+        <div class="row mot-hang">
+              <a href="#" class="big-title">ĐƠN HÀNG</a>
+        </div></br></br>
+        <!--
+      <a href="themsanpham.html" class="btn btn-primary btn-lg"  role="button" style="margin-left: 16px;">Thêm đơn hàng</a>
+      -->
+      </br>
+
+<!--
+        <form class="navbar-form navbar-left" role="search">
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+
+          <button type="submit" class="btn btn-default">Tìm kiếm</button>
+        </form>
+        -->
+       
+          <table style="width: 1177px">
+            <tr>
+              <th>ID</th>
+              <th>Mã Khách Hàng</th>
+              <th>Tên Người Nhận</th>
+              <th>Email</th>
+              <th>Số Điện Thoại</th>
+              <th>Địa Chỉ</th>
+              <th>Ngày Đặt Hàng</th>
+              <th>Tổng Hoá Đơn</th>  
+              <th>Thanh Toán</th> 
+              <th>Trạng Thái</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td><input type="text" class="form-control" placeholder="Search"></td>
+              <td></td>
+            </tr>
+            {% for order in orders %}
+            <tr>  
+              <td>{{ order.orders_id }}</td>
+              <td>{{ order.user_id }}</td>
+              <td>{{ order.name }}</td>
+              <td>{{ order.email }}</td>
+              <td>{{ order.phone }}</td>
+              <td>{{ order.address }}</td>
+              <td>{{ order.order_date }}</td>
+              <td>{{ order.total }}</td>
+              <td>{{ order.payment_id }}</td>
+              {% if (order.status == 'pending') %}
+              <td><i class="fa fa-minus-square" aria-hidden="true" alt="pending"></i></td>
+              {% else %}
+              <td><i class="fa fa-check-square" aria-hidden="true" alt="confirmed"></i></td>
+              {% endif %}
+              <td>
+                <a href="/don-hang/edit/{{order.orders_id}}" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a href="/don-hang/delete/{{order.orders_id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+
+    </section>
+
+{% endblock %}
+
