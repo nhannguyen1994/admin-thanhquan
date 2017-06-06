@@ -1,0 +1,47 @@
+{% extends "index.html" %} {% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+
+    <h1>
+      <!-- Dashboard-->
+      <small><!--Control panel--></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Hãng Sản Xuất</li>
+    </ol>
+  </section>
+
+  <section class="container" id="cart-page">
+    <div class="row mot-hang">
+      <a href="" class="big-title">HÃNG SẢN XUẤT</a>
+    </div>
+    </br>
+
+    <table>
+      <tr>
+        <th>Hãng Sản Xuất</th>
+        <th>Số Lượng</th>
+      </tr>
+      {% for item in manufacturers %} {% if (item.manufacturer_id == '') %}
+      <tr>
+        <th>Không phân loại</th>
+        <th>{{item.count}}</th>
+      </tr>
+      {% else %}
+      <tr>
+        <th>{{item.manufacturer_id}}</th>
+        <th>{{item.count}}</th>
+      </tr>
+      {% endif %} {% endfor %}
+    </table>
+
+  </section>
+
+
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+{% endblock %}

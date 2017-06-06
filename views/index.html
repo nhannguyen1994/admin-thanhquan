@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% include "head.html" %} 
+
+  {% block head %}
+  <!--Can add more info here-->
+  <style>
+   table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 95%;
+    max-width: 95%;
+    height: 100%;
+    border-top: 1px solid #90A4AE;
+
+  }
+  
+  thead {
+        background-color: #78909C;
+  }
+
+  th,
+  td {
+    padding: 5px;
+    text-align: left;
+    border: 1px solid #90A4AE;
+  }
+  
+  tr:hover {
+    background-color: #9E9E9E;
+  }
+
+  td.img_cart img {
+    max-width: 100px;
+    max-height: 100%;
+  }
+
+  .hide-text-status {
+    display: none;
+  }
+</style>
+{% endblock %}
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+  
+  {% include "main-header-sidebar.html" %} 
+
+  {% block content %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+
+        <h1>
+          <!-- Dashboard-->
+          <small><!--Control panel--></small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">admin</li>
+        </ol>
+      </section>
+
+
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+    {% endblock %}
+
+    {% include "script-link.html" %}   
+    {% block script %}
+    {% endblock %} 
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+{% extends "index.html" %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+
+    <h1>
+      <!-- Dashboard-->
+      <small><!--Control panel--></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Chỉnh sửa đơn hàng</li>
+    </ol>
+  </section>
+
+  <section class="container" id="cart-page">
+    <div class="row mot-hang">
+      <a href="/them-san-pham" class="big-title">CHỈNH SỬA ĐƠN HÀNG</a>
+    </div>
+    </br>
+    <form action="/don-hang/confirm" method="POST">
+    <table style="margin-top: 50px;">
+      <tr>
+        <th>ID</th>
+        <th>Mã Khách Hàng</th>
+        <th>Tên Người Nhận</th>
+        <th>Email</th>
+        <th>Số Điện Thoại</th>
+        <th>Địa Chỉ</th>
+        <th>Ngày Đặt Hàng</th>
+        <th>Thanh Toán</th>
+        <th>Trạng Thái</th>
+      </tr>
+      
+      <tr>
+        <td><input type="text" class="form-control" name="orders_id" value="{{ order.orders_id }}"></td>
+        <td><input type="text" class="form-control" name="user_id" value="{{ order.user_id }}"></td>
+        <td><input type="text" class="form-control" name="name" value="{{ order.name }}"></td>
+        <td><input type="text" class="form-control" name="email" value="{{ order.email }}"></td>
+        <td><input type="text" class="form-control" name="phone" value="{{ order.phone }}"></td>
+        <td><input type="text" class="form-control" name="address" value="{{ order.address }}"></td>
+        <td><input type="text" class="form-control" name="order_date" value="{{ order.order_date }}"></td>
+        <td><input type="text" class="form-control" name="method" value="{{ order.method }}"></td>
+        <td><input type="text" class="form-control" name="status" value="{{ order.status }}"></td>
+      </tr>
+    </table>
+    <div class="row">
+      <h3>Đơn Hàng Chi Tiết</h3>
+      <hr>
+      <table>
+        <tr>
+          <th>Mã Chi Tiết</th>
+          <th>Mã Đơn Hàng</th>
+          <th>Mã Sản Phẩm</th>
+          <th>Hình Ảnh</th>
+          <th>Tên Sản Phẩm</th>
+          <th>Số Lượng</th>
+          <th>Giá Sản Phẩm</th>
+        </tr>
+        {% for product in detailed_orders %}
+        <tr>
+          <td>{{ product.detailed_orders_id }}</td>
+          <td>{{ product.orders_id }}</td>
+          <td>{{ product.product_id }}</td>
+          {% if (product.product_type_id == 'ptdt')%}
+          <td class="img_cart"><img src="/images/products/{{ product.product_id }}_0.jpg"></td>
+          {% else %}
+          <td class="img_cart"><img src="/images/phukien/{{ product.product_id }}_0.jpg"></td>
+          {% endif %}
+          <td>{{ product.product_name }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.price }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="modal-footer" style="margin-right: 50px;">
+      <!--<button type="button" class="btn btn-primary">Lưu</button> -->
+      <input type="submit" name="confirm" value="Xác nhận" class="btn btn-primary" >
+    </div>
+    </form>
+
+  </section>
+
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+{% endblock %}

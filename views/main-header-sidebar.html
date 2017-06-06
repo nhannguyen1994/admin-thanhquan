@@ -1,0 +1,167 @@
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>ADMIN</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Thành Quân </span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="/images/a.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">Thành Quân Smartphone</span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="/images/a.jpg" class="img-circle" alt="User Image">
+                            <p>
+                                Thành Quân Smartphone
+                                <small>169 Ga Đỗ Xá- Thường Tín- Hà Nội</small>
+                            </p>
+                        </li>
+
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Thông Tin Cá nhân</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat">Đăng Xuất</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- ================================== -->
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/images/a.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>Thành Quân Smartphone</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+
+            <li class="header">Quản Trị Viên</li>
+            <!--
+        <li class="treeview">
+          <a href="#">
+            <i class="glyphicon glyphicon-user"></i><span>Tài khoản ADMIN</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right"></span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Thông tin cá nhân</a></li>
+            <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Đăng nhập</a></li>
+            <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Đăng ký</a></li>
+            <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Màn hình khóa</a></li>
+          </ul>
+        </li>
+        -->
+
+            <li>
+                <a href="/user">
+                    <i class="glyphicon glyphicon-user"></i> <span>Quản Lý User</span>
+                    <span class="pull-right-container">
+            <!--  <small class="label pull-right bg-green">new</small> -->
+            </span>
+                </a>
+            </li>
+
+            <li class="header">Quản Lý Nội Dung</li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i><span>Quản Lý Sản Phẩm</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/san-pham/loai-san-pham"><i class="fa fa-circle-o"></i> Loại Sản Phẩm</a></li>
+                    <li><a href="/san-pham/"><i class="fa fa-circle-o"></i> Sản Phẩm</a></li>
+                    <li><a href="/san-pham/hang-san-xuat"><i class="fa fa-circle-o"></i> Hãng Sản Xuất</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i><span> Quản Lý Đơn Hàng/ Hoá Đơn</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/don-hang/"><i class="fa fa-circle-o"></i>  Quản Lý Đơn Hàng </a></li>
+                    <li><a href="/don-hang/hoa-don"><i class="fa fa-circle-o"></i>  Quản Lý Hoá Đơn</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/tin-tuc">
+                    <i class="fa fa-th"></i> <span>Quản Lý Tin Tức</span>
+                    <span class="pull-right-container">
+            <!--  <small class="label pull-right bg-green">new</small> -->
+            </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-th"></i> <span>Quản Lý Liên Hệ/ Phản Hồi</span>
+                    <span class="pull-right-container">
+            <!--  <small class="label pull-right bg-green">new</small> -->
+            </span>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Thống Kê - Báo Cáo</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/thong-ke/sp-ban-chay"><i class="fa fa-circle-o"></i>Sản phẩm bán chạy</a></li>
+                    <li><a href="/thong-ke/hang-ton-kho"><i class="fa fa-circle-o"></i> Hàng Tồn Kho </a></li>
+                    <li><a href="/thong-ke/doanh-thu"><i class="fa fa-circle-o"></i>Doanh Thu</a></li>
+                </ul>
+            </li>
+
+</aside>

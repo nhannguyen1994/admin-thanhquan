@@ -1,0 +1,82 @@
+{% extends "index.html" %}
+{% block content %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+      <h1>
+       <!-- Dashboard-->
+        <small><!--Control panel--></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Hóa Đơn</li>
+      </ol>
+    </section>
+
+    <section class="container" id="cart-page">
+        <div class="row mot-hang">
+              <a href="" class="big-title">HÓA ĐƠN</a>
+        </div></br></br>
+       <!--
+      <a href="#" class="btn btn-primary btn-md"  role="button" style="margin-left: 16px;">Thêm Hóa Đơn</a>
+
+      </br>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Tìm Kiếm</button>
+        </form>
+       -->
+          <table class="filter-table">
+            <thead>
+            <tr class="filters">
+              <th><input type="text" class="form-control" placeholder="ID"></th>
+              <th><input type="text" class="form-control" placeholder="Tên Người Nhận"></th>
+              <th><input type="text" class="form-control" placeholder="email"></th>
+              <th><input type="text" class="form-control" placeholder="Thanh toán"></th>
+              <th><input type="text" class="form-control" placeholder="Ngày lập hoá đơn"></th>
+              <th><input type="text" class="form-control" placeholder="Người lập hoá đơn"></th>
+              <th></th>
+              <th></th>
+             <tr>
+              <th>ID</th>
+              <th>Tên Người Nhận</th>
+              <th>Email</th>
+              <th>Thanh Toán</th>
+              <th>Ngày Lập Hóa Đơn</th>
+              <th>Người Lập Hóa Đơn</th>
+              <th>Trạng thái</th>
+              <th style="width: 100px;"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for bill in bills %}
+            <tr>  
+              <td>{{ bill.bill_id }}</td>
+              <td>{{ bill.user_id}} </td>
+              <td> </td>
+              <td>{{ bill.method }}</td>
+              <td>{{bill.founded_date}}</td>
+              <td>Nhan</td>
+              <td>{{bill.status}}</td>
+              <td>
+                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+           
+          </table>
+
+    </section>
+</div>
+<!-- ./wrapper -->
+{% endblock %}
+{% block script %}
+<script src="/dist/js/filter.js"></script>
+{% endblock %}
+

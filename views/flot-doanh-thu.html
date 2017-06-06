@@ -1,0 +1,143 @@
+{% extends "index.html" %} {% block head %} {% endblock %} {% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Doanh Thu
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Thống Kê</a></li>
+            <li class="active">Doanh thu</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Line chart -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bar-chart-o"></i>
+
+                        <h3 class="box-title">Line Chart - Doanh Thu Hàng Tháng Năm 2017</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div id="line-chart" style="height: 300px;"></div>
+                    </div>
+                    <!-- /.box-body-->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+{% endblock %} {% block script %}
+<!-- FLOT CHARTS -->
+<script src="/plugins/flot/jquery.flot.min.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="/plugins/flot/jquery.flot.resize.min.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="/plugins/flot/jquery.flot.pie.min.js"></script>
+<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+<script src="/plugins/flot/jquery.flot.categories.min.js"></script>
+<!-- Page script -->
+<script>
+    $(function () {
+        /*
+         * LINE CHART
+         * ----------
+         */
+        //LINE randomly generated data
+        var lineData = {{lineData | dump}};
+        // Vì dữ liệu monthlyRevenue từ DB không đủ nên có thể thêm dữ liệu giả vào để hiện thị line chart đẹp hơn
+        var monthlyRevenue = [[1, 1000000], [2, 0], [3, 15000000],[4, 0],[5, 30000000]].concat(lineData).concat([[7, 0], [8, 0], [9, 0], [10, 0], [11, 0], [12, 0]]);
+        var line_data1 = {
+            data: monthlyRevenue,
+            color: "#3c8dbc"
+        };
+
+        $.plot("#line-chart", [line_data1], {
+            grid: {
+                hoverable: true,
+                borderColor: "#f3f3f3",
+                borderWidth: 2,
+                tickColor: "#f3f3f3"
+            },
+            series: {
+                curvedLines: { active: true },
+                shadowSize: 0,
+                lines: {
+                    show: true
+                },
+                points: {
+                    show: true
+                }
+            },
+            lines: {
+                fill: false,
+                color: ["#3c8dbc", "#f56954"]
+            },
+            yaxis: {
+                show: true,
+                tickDecimal: 0,
+                tickFormatter: tickFormatter,
+            },
+            xaxis: {
+                show: true,
+                tickSize: 1,
+                tickDecimal: 0,
+            }
+        });
+        //Initialize tooltip on hover
+        $('<div class="tooltip-inner" id="line-chart-tooltip"></div>').css({
+            position: "absolute",
+            display: "none",
+            opacity: 0.8
+        }).appendTo("body");
+        $("#line-chart").bind("plothover", function (event, pos, item) {
+
+            if (item) {
+                var x = item.datapoint[0].toFixed(0),
+                    y = item.datapoint[1].toFixed(0);
+                y = Number(y).toLocaleString();
+                $("#line-chart-tooltip").html("Monthly Revenue of " + x + " is " + y)
+                    .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                    .fadeIn(200);
+            } else {
+                $("#line-chart-tooltip").hide();
+            }
+
+        });
+        /* END LINE CHART */
+
+    });
+
+    /*
+     * Custom Label formatter
+     * ----------------------
+     */
+    function labelFormatter(label, series) {
+        return '<div style="font-size:12px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
+            + label
+            + "<br>"
+            + Math.round(series.percent) + "%</div>";
+    }
+    function tickFormatter(value, axis) {
+        return value.toLocaleString();
+    }
+
+</script>
+{% endblock %}

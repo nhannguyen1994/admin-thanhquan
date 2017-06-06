@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+
+ {% block content %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Quản lý user</li>
+      </ol>
+    </section>
+
+    <section class="container" id="cart-page">
+      <div class="row mot-hang">
+        <a href="#" class="big-title" style="font-size: 18px;">QUẢN LÝ USER</a>
+      </div></br>
+
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Fullname</th>
+          <th>Gender</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Role</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>0</th>
+          <th>nhan</th>
+          <th>Nhan</th>
+          <th>Nữ</th>
+          <th>033334656546</th>
+          <th>HN - VN</th>
+          <th>Admin</th>
+          <td>
+              <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+              <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+          </td>
+        </tr>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.user_id }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.fullname }}</td>
+          <td>{{ user.gender }} </td>
+          <td>033334656546</td>
+          <td>{{ user.address }}</td>
+          <td>Khách hàng</td>
+          <td>
+              <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+              <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+          </td>
+          {% endfor %}
+        </tr>
+       
+      </table>
+
+    </section>
+    <!--<div style="padding-left: 500px;padding-top: 30px;"   class="col-md-12 pagination-box">
+      <ul class="pagination">
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&gt;</a></li>
+        <li><a href="#">Trang  cuối</a></li>
+      </ul>
+    </div> -->
+
+    <div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->
+{% endblock %}

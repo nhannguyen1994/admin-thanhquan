@@ -1,0 +1,94 @@
+{% extends "index.html" %} 
+
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+
+    <h1>
+      <!-- Dashboard-->
+      <small><!--Control panel--></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">sản phẩm</li>
+    </ol>
+  </section>
+
+  <section class="container" id="cart-page">
+    <div class="row mot-hang">
+      <a href="/san-pham" class="big-title">SẢN PHẨM</a>
+    </div>
+    </br>
+    <a href="/them-san-pham" class="btn btn-primary" role="button" style="margin-left: 16px;">Thêm sản phẩm</a>
+  </br>
+    <form class="navbar-form navbar-left" role="search" action="/san-pham/search" method="POST">
+      <div class="form-group">
+        <input type="text" name="search" class="form-control" placeholder="Search product name">
+      </div>
+      <button type="submit" class="btn btn-default">Tìm kiếm</button>
+    </form>
+    <hr>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Hình Ảnh</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Hãng Sản Xuất</th>
+        <th>Giá</th>
+        <th>Ngày Nhập</th>
+        <th>Đã Bán</th>
+        <th>Trong Kho</th>
+      </tr>
+
+      {% for product in products %}
+      <tr>
+        <td>{{ product.product_id }}</td>
+        {% if (product.product_type_id == 'ptdt')%}
+        <td class="img_cart"><img src="/images/products/{{ product.product_id }}_0.jpg"></td>
+        {% else %}
+        <td class="img_cart"><img src="/images/phukien/{{ product.product_id }}_0.jpg"></td>
+        {% endif %}
+        <td>{{ product.product_name }}</td>
+        <td>{{ product.manufacturer_id }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.store_day }}</td>
+        <td>{{ product.sales_volume }}</td>
+        <td>{{ product.quantity }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+  </section>
+  <div style="padding-left: 500px;padding-top: 30px;" class="col-md-12 pagination-box">
+    <ul class="pagination">
+      {% if pageQuery %}
+					{% for i in range(1, allpage+1) %}
+						{% if loop.first %}
+							<li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="{{pageQuery}}&page={{i}}">Trang đầu</a></li>
+						{% elif loop.last %}
+							<li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="{{pageQuery}}&page={{i}}">Trang cuối</a></li>
+						{% else %}
+							<li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="{{pageQuery}}&page={{i}}">{{i}}</a></li>
+						{% endif %}
+					{% endfor %}
+				{% else %}
+					{% for i in range(1, allpage+1) %}
+						{% if loop.first %}
+							<li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="?page={{i}}">Trang đầu</a></li>
+						{% elif loop.last %}
+							<li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="?page={{i}}">Trang cuối</a></li>
+						{% else %}
+							<li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></li>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+    </ul>
+  </div>
+  <!-- end col -->
+
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+{% endblock %}
