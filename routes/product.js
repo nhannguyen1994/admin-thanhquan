@@ -8,8 +8,9 @@ module.exports = function (express) {
     const router = express.Router();
 
     // display table of product types and their amounts
+    //đếm loại sp vs sl là bao nhiêu r render
     router.get('/loai-san-pham', (req, res) => {
-        product.countProductType()
+        product.countProductType() // đếm loại sp
             .then(data => {
                 res.render('loai-san-pham.html', {
                     productType: data
@@ -17,7 +18,7 @@ module.exports = function (express) {
 
             })
     });
-
+    // đếm sl hãng sx
     router.get('/hang-san-xuat', (req, res) => {
         product.countManufacturer()
             .then(data => {
@@ -26,7 +27,7 @@ module.exports = function (express) {
                 });
             });
     });
-
+    // phân trang
     router.get('/', (req, res) => {
 
         let q = req.query.page;
@@ -97,6 +98,7 @@ module.exports = function (express) {
             });
     });
 
+    
     router.post('/search', (req, res) => {
         product.findByName(req.body.search)
             .then(data => {

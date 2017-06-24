@@ -1,9 +1,11 @@
-# ADMIN PANEL
+##usage
+```
+npm install
+```
 
-## TODO: 
+##Run
+```
+node index.js
 
-## Updates: 
-### 
-1. Display orders and detailed orders
-2. Display products
-* Remove product types: only use 2 types ptdt and ptpk
+http://localhost:3000
+```

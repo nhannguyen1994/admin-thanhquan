@@ -34,8 +34,9 @@
             <thead>
             <tr class="filters">
               <th><input type="text" class="form-control" placeholder="ID"></th>
-              <th><input type="text" class="form-control" placeholder="Tên Người Nhận"></th>
-              <th><input type="text" class="form-control" placeholder="email"></th>
+              <th><input type="text" class="form-control" placeholder="Mã khách hàng"></th>
+              <th><input type="text" class="form-control" placeholder="Số lượng"></th>
+                <th><input type="text" class="form-control" placeholder="Tổng tiền"></th>
               <th><input type="text" class="form-control" placeholder="Thanh toán"></th>
               <th><input type="text" class="form-control" placeholder="Ngày lập hoá đơn"></th>
               <th><input type="text" class="form-control" placeholder="Người lập hoá đơn"></th>
@@ -43,8 +44,9 @@
               <th></th>
              <tr>
               <th>ID</th>
-              <th>Tên Người Nhận</th>
-              <th>Email</th>
+              <th>Mã khách hàng</th>
+              <th>Số lượng</th>
+                <th>Tổng tiền</th>
               <th>Thanh Toán</th>
               <th>Ngày Lập Hóa Đơn</th>
               <th>Người Lập Hóa Đơn</th>
@@ -57,14 +59,15 @@
             <tr>  
               <td>{{ bill.bill_id }}</td>
               <td>{{ bill.user_id}} </td>
-              <td> </td>
+              <td>{{bill.quantity}}</td>
+                <td>{{bill.total_revenue}}</td>
               <td>{{ bill.method }}</td>
               <td>{{bill.founded_date}}</td>
-              <td>Nhan</td>
+              <td>admin</td>
               <td>{{bill.status}}</td>
               <td>
-                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                <a href="/hoa-don/edit/{{bill.bill_id}}" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a href="/hoa-don/delete/{{bill.bill_id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
               </td>
             </tr>
             {% endfor %}

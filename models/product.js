@@ -4,26 +4,30 @@ class Product {
     constructor (db) {
         this.db = db;
     }
-
+    // lấy id loại sp, đếm id loại sp trong bảng sp , đồng nhất od loai sp
     countProductType () {
         return this.db.many("SELECT product_type_id, COUNT (product_type_id) FROM product GROUP BY product_type_id");
     }
+    // lấy id hãng sản xuất, đếm id hãng sx trong bảng sp  đồng nhất dl id hãng sx sắp xếp id tăng đân
     countManufacturer () {
         return this.db.many("SELECT manufacturer_id, COUNT (manufacturer_id) FROM product GROUP BY manufacturer_id ORDER BY manufacturer_id ASC");
     }
     // count sales volume by manufacturers
+    // tính tổng sl bán ra của id hãng sản xuất trong bảng sp
     countSalesByManufacturer () {
-        return this.db.many("SELECT manufacturer_id, SUM (sales_volume) FROM product GROUP BY manufacturer_id ORDER BY manufacturer_id ASC");
+        return this.db.many("SELECT manufacturer_id, SUM(sales_volume) FROM product GROUP BY manufacturer_id ORDER BY manufacturer_id ASC");
     }
     // top 10 best-selling products
+    // lấy tên, sl bán ra trong bảng sp sawos xếp sl bán ra giảm dần, giới hạn là 10 sp
     selectBestSales () {
-        return this.db.many("SELECT product_name, sales_volume FROM product  ORDER BY sales_volume DESC LIMIT 10");
+        return this.db.many("SELECT product_name, sales_volume FROM product ORDER BY sales_volume DESC LIMIT 10");
     }
     // top 10 products with highest quantity
+    // lấy tên, sl trong bảng sp sắp xếp sl giảm dần, giới hạn là 10 sp
     selectMostInStock () {
         return this.db.many("SELECT product_name, quantity FROM product ORDER BY quantity DESC LIMIT 10");
     }
-    //
+    //lấy id sp, tên, sl bán ra, sl, ngày lưu sắp xếp giảm dần, trong đó id sp trong bảng sp phải có sl lớn hơn hoặc =15 sắp xếp theo ngày lưu tăng gần,giới hạn là 10)
     selectOldestStock () {
         return this.db.many("SELECT product_id, product_type_id, product_name, sales_volume, quantity, store_day FROM product WHERE product_id IN (SELECT product_id FROM product where quantity >= 15 ORDER BY store_day ASC LIMIT 10) ORDER BY quantity DESC");
     }
@@ -35,9 +39,11 @@ class Product {
     selectByPagination(n, pgfrom) {
         return this.db.many("SELECT * FROM product ORDER BY product_id DESC LIMIT $1 OFFSET $2", [n, pgfrom]);
     }
+    // đếm tất cả trong bảng sp với id loại sp là điện thoại
     countAll() {
         return this.db.many("SELECT count(*) FROM product WHERE product_type_id = 'ptdt'");
     }
+    //lấy tất cả gtri trong bảng sp với id sp dk trả về
     detail(id) {
         return this.db.oneOrNone("SELECT * FROM product WHERE product_id = $1", id);
     }

@@ -29,10 +29,10 @@
         </tr>
         <tr>
           <th>0</th>
-          <th>nhan</th>
-          <th>Nhan</th>
+          <th>admin</th>
+          <th>admin</th>
           <th>Nữ</th>
-          <th>033334656546</th>
+          <th>0943271111</th>
           <th>HN - VN</th>
           <th>Admin</th>
           <td>
@@ -46,7 +46,7 @@
           <td>{{ user.email }}</td>
           <td>{{ user.fullname }}</td>
           <td>{{ user.gender }} </td>
-          <td>033334656546</td>
+          <td>{{ user.phone }}</td>
           <td>{{ user.address }}</td>
           <td>Khách hàng</td>
           <td>
@@ -59,19 +59,34 @@
       </table>
 
     </section>
-    <!--<div style="padding-left: 500px;padding-top: 30px;"   class="col-md-12 pagination-box">
+    <div style="padding-left: 500px;padding-top: 30px;" class="col-md-12 pagination-box">
       <ul class="pagination">
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&gt;</a></li>
-        <li><a href="#">Trang  cuối</a></li>
+        {% if pageQuery %}
+        {% for i in range(1, allpage+1) %}
+        {% if loop.first %}
+        <li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="{{pageQuery}}&page={{i}}">Trang đầu</a></li>
+        {% elif loop.last %}
+        <li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="{{pageQuery}}&page={{i}}">Trang cuối</a></li>
+        {% else %}
+        <li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="{{pageQuery}}&page={{i}}">{{i}}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        {% for i in range(1, allpage+1) %}
+        {% if loop.first %}
+        <li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="?page={{i}}">Trang đầu</a></li>
+        {% elif loop.last %}
+        <li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="?page={{i}}">Trang cuối</a></li>
+        {% else %}
+        <li {% if(pageCurrent == i) %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
       </ul>
-    </div> -->
+    </div>
+    <!-- end col -->
 
     <div class="control-sidebar-bg"></div>
   </div>
-  <!-- ./wrapper -->
+<!-- ./wrapper -->
 {% endblock %}
